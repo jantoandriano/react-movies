@@ -19,7 +19,8 @@ const Login = () => {
   const [_user, setUser] = useContext(Context);
   const navigate = useNavigate();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     setError(false);
     try {
       const requestToken = await API.getRequestToken();

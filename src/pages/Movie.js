@@ -1,6 +1,6 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-
+import React, { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 // Config
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../config/config";
 
@@ -12,6 +12,7 @@ import Actor from "../components/Actor";
 
 // Hooks
 import { useMovieFetch } from "../hooks/useMovieFetch";
+import API from "../API/API";
 
 // Fallback Image
 import NoImage from "../images/no_image.jpg";
@@ -19,6 +20,28 @@ import NoImage from "../images/no_image.jpg";
 const Movie = () => {
   const { movieId } = useParams();
   const { state: movie, loading, error } = useMovieFetch(movieId);
+
+  const navigate = useNavigate();
+  const [inputRating, setInputRating] = useState("");
+
+  const handleInputRating = (e) => {
+    setInputRating(e.target.value);
+  };
+
+  const handleSubmitRating = async (e) => {
+    e.preventDefault();
+
+    const sessionId = localStorage.getItem("sessionId");
+    const response = await API.rateMovie(sessionId, movie.id, inputRating);
+    if (response.status_code === 12) {
+      toast(response.status_message);
+    } else if (response.status_code === 3) {
+      toast(response.status_message);
+      navigate("/login");
+    } else if (response.status_code === 18) {
+      toast(response.status_message);
+    }
+  };
 
   if (loading) {
     return <Spinner />;
@@ -29,7 +52,12 @@ const Movie = () => {
 
   return (
     <React.Fragment>
-      <MovieInfo movie={movie} />
+      <MovieInfo
+        movie={movie}
+        handleInputRating={handleInputRating}
+        handleSubmitRating={handleSubmitRating}
+        inputRating={inputRating}
+      />
       <Grid header="Actors">
         {movie.actors.slice(0, 5).map((actor) => (
           <Actor
