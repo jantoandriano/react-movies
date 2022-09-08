@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Styles
 import { GlobalStyle } from "./styles/global/GlobalStyle";
-
 // Context
 import UserProvider from "./context/context";
 

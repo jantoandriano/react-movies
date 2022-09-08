@@ -6,7 +6,7 @@ import API from "../../API/API";
 import Button from "../Button";
 
 // Styles
-import { Wrapper } from "./login.styles";
+import { Wrapper, Input, Form } from "./login.styles";
 
 // Context
 import { Context } from "../../context/context";
@@ -28,9 +28,8 @@ const Login = () => {
         username,
         password
       );
-      console.log(sessionId);
       setUser({ sessionId: sessionId.session_id, username });
-
+      localStorage.setItem("sessionId", sessionId.session_id);
       navigate("/");
     } catch (error) {
       setError(true);
@@ -46,23 +45,29 @@ const Login = () => {
   };
 
   return (
-    <Wrapper>
-      {error && <div className="error">There was an error!</div>}
-      <label>Username:</label>
-      <input
-        type="text"
-        value={username}
-        name="username"
-        onChange={handleInput}
-      />
-      <input
-        type="password"
-        value={password}
-        name="password"
-        onChange={handleInput}
-      />
-      <Button callback={handleSubmit}>Login</Button>
-    </Wrapper>
+    <>
+      <Wrapper>
+        {error && <div className="error">There was an error!</div>}
+
+        <Form onSubmit={handleSubmit}>
+          <Input
+            type="text"
+            name="username"
+            value={username}
+            onChange={handleInput}
+          />
+          <Input
+            type="password"
+            name="password"
+            value={password}
+            onChange={handleInput}
+          />
+          <Button type="login" callback={handleSubmit}>
+            Login
+          </Button>
+        </Form>
+      </Wrapper>
+    </>
   );
 };
 

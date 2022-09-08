@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 // Styles
 import { Wrapper } from "./Button.styles";
 
-const Button = ({ children, callback }) => {
+const Button = ({ children, callback, type }) => {
   return (
     <React.Fragment>
-      <Wrapper type="button" onClick={callback}>
+      <Wrapper type={type} onClick={callback}>
         {children}
       </Wrapper>
     </React.Fragment>
