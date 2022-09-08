@@ -12,7 +12,7 @@ import Button from "../components/Button";
 
 // Hooks
 import { useHomeFetch } from "../hooks/useHomeFetch";
-import { useGetCredits } from "../hooks/useGetCredits";
+import { useGetTrending } from "../hooks/useGetTrending";
 
 // Image: if API fails to render image then the fallback image used this one
 import NoImage from "../images/no_image.jpg";
@@ -22,7 +22,7 @@ const Home = () => {
   const { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore } =
     useHomeFetch();
 
-  const { credits, loadingCredits } = useGetCredits();
+  const { trendings, loadingTrendings } = useGetTrending();
 
   if (error) {
     return <h1>Something Went Wrong...</h1>;
@@ -30,7 +30,7 @@ const Home = () => {
   return (
     <React.Fragment>
       {!searchTerm && state.results[0] ? (
-        <Carousel data={loadingCredits ? [] : credits} />
+        <Carousel data={loadingTrendings ? [] : trendings} />
       ) : null}
 
       <SearchBar setSearchTerm={setSearchTerm}></SearchBar>

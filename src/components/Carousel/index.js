@@ -13,7 +13,7 @@ const Carousel = ({ data }) => {
   const navigate = useNavigate();
 
   const handleClick = (id) => {
-    navigate(`/movie/${id}/`);
+    navigate(`/${id}`);
   };
 
   const items = data.map((item) => (
