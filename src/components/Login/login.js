@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import API from "../../API/API";
 
 // Components
@@ -14,14 +15,12 @@ import { Context } from "../../context/context";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
 
   const [_user, setUser] = useContext(Context);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(false);
     try {
       const requestToken = await API.getRequestToken();
       const sessionId = await API.authenticate(
@@ -33,7 +32,7 @@ const Login = () => {
       localStorage.setItem("sessionId", sessionId.session_id);
       navigate("/");
     } catch (error) {
-      setError(true);
+      toast("Use jantoandriano || Janto2793 to login");
     }
   };
 
@@ -48,8 +47,6 @@ const Login = () => {
   return (
     <>
       <Wrapper>
-        {error && <div className="error">There was an error!</div>}
-
         <Form onSubmit={handleSubmit}>
           <Input
             type="text"

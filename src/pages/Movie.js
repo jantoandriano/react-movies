@@ -35,6 +35,9 @@ const Movie = () => {
     const response = await API.rateMovie(sessionId, movie.id, inputRating);
     if (response.status_code === 12) {
       toast(response.status_message);
+      setTimeout(() => {
+        window.location.reload();
+      }, 4000);
     } else if (response.status_code === 3) {
       toast(response.status_message);
       navigate("/login");
