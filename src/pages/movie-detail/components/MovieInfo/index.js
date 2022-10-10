@@ -2,12 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 
 // Components
-import Thumbnail from "../Thumbnail";
+import Thumbnail from "../../../../components/Thumbnail";
 
 // Config
-import { IMAGE_BASE_URL, POSTER_SIZE } from "../../config/config";
+import { IMAGE_BASE_URL, POSTER_SIZE } from "../../../../config/config";
 // Fallback Image
-import NoImage from "../../images/no_image.jpg";
+import NoImage from "../../../../images/no_image.jpg";
 
 // Styles
 import {

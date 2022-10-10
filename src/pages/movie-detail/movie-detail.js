@@ -7,7 +7,7 @@ import { IMAGE_BASE_URL, POSTER_SIZE } from "../../config/config";
 // Components
 import Grid from "../../components/Grid";
 import Spinner from "../../components/Spinner";
-import MovieInfo from "../../components/MovieInfo";
+import MovieInfo from "./components/MovieInfo";
 import Actor from "../../components/Actor";
 
 // Hooks
