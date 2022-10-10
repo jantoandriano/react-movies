@@ -4,13 +4,13 @@ import { toast } from "react-toastify";
 import API from "../../API/API";
 
 // Components
-import Button from "../Button";
+import Button from "../../components/Button";
 
 // Styles
-import { Wrapper, Input, Form } from "./login.styles";
+import { Wrapper, Input, Form } from "./styles/login.styles";
 
 // Context
-import { Context } from "../../context/context";
+import { Context } from "../../contexts/context";
 
 const Login = () => {
   const [username, setUsername] = useState("");

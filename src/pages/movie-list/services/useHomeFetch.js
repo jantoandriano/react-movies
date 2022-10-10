@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 // API
-import API from "../API/API";
+import API from "../../../API/API";
 // Helpers
-import { isPersistedState } from "../helpers/helpers";
+import { isPersistedState } from "../../../helpers";
 
 const intialState = {
   page: 0,
@@ -15,21 +15,24 @@ export const useHomeFetch = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [state, setState] = useState(intialState);
   const [loading, setLoading] = useState(false);
-  const [error, setEror] = useState(false);
+  const [error, setEror] = useState("");
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
   const fetchMovies = async (page, searchTerm = "") => {
     try {
-      setEror(false);
       setLoading(true);
       const movies = await API.fetchMovies(searchTerm, page);
+      if (!movies?.success) {
+        setEror(movies?.status_message);
+        return;
+      }
       setState((prev) => ({
         ...movies,
         results:
           page > 1 ? [...prev.results, ...movies.results] : [...movies.results],
       }));
     } catch (error) {
-      setEror(true);
+      setEror(error);
     }
     setLoading(false);
   };
@@ -45,7 +48,6 @@ export const useHomeFetch = () => {
       const sessionState = isPersistedState("homeState");
 
       if (sessionState) {
-        console.log("GRABBING FROM SESSION STORAGE");
         setState(sessionState);
         return;
       }

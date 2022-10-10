@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 // API
-import API from "../API/API";
+import API from "../../../API/API";
 
 const intialState = {
   page: 0,

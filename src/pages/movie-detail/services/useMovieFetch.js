@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import API from "../API/API";
+import API from "../../../API/API";
 
 export const useMovieFetch = (movieId) => {
   const [state, setState] = useState({});

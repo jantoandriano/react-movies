@@ -1,19 +1,12 @@
 import React from "react";
-
-// Routing
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-// Styles
 import { GlobalStyle } from "./styles/global/GlobalStyle";
-// Context
-import UserProvider from "./context/context";
-
-// Components
+import UserProvider from "./contexts/context";
 import Header from "./components/Header";
-import Home from "./pages/Home";
-import Movie from "./pages/Movie";
-import NotFound from "./pages/NotFound";
-import Login from "./components/Login/login";
+import MovieList from "./pages/movie-list";
+import MovieDetail from "./pages/movie-detail";
+import NotFound from "./pages/not-found";
+import Login from "./pages/login";
 
 const App = () => {
   return (
@@ -22,8 +15,8 @@ const App = () => {
         <UserProvider>
           <Header />
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/:movieId" element={<Movie />} />
+            <Route path="/" element={<MovieList />} />
+            <Route path="/:movieId" element={<MovieDetail />} />
             <Route path="/*" element={<NotFound />} />
             <Route path="/login" element={<Login />} />
           </Routes>

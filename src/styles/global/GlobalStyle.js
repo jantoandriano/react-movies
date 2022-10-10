@@ -11,7 +11,8 @@ export const GlobalStyle = createGlobalStyle`
         --fontBig: 1.5rem;
         --fontMedium: 1.1rem;
         --fontSmall: 0.9rem;
-        --background_1: linear-gradient(to bottom, #141b29, #0c111b 300px)
+        --background_1: linear-gradient(to bottom, #141b29, #0c111b 300px);
+        --background_2: #121926;
     }
 
     *{
@@ -21,7 +22,7 @@ export const GlobalStyle = createGlobalStyle`
         text-decoration: none;
     }
     body{
-        background: var(--background_1);
+        background-color: var(--background_2);
         h1{
             font-size: 2rem;
             font-weight: 600;
